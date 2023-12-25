@@ -1,3 +1,5 @@
+import 'package:aeroplane/screens/app_info_list.dart';
+import 'package:aeroplane/screens/hotel_screen.dart';
 import 'package:aeroplane/screens/ticket_view.dart';
 import 'package:aeroplane/utils/app_styles.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +78,8 @@ class Homescreen extends StatelessWidget {
                             "View all",
                             style: Styles.textStyle
                                 .copyWith(color: Styles.primaryColor),
-                          )),
+                          )
+                          ),
                     ],
                   ),
                 ],
@@ -85,14 +88,40 @@ class Homescreen extends StatelessWidget {
             const Gap(15),
               SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.only(left: 20),
-              child: Row(
-                children: [
-                  TicketView(),
-                  TicketView(),
-                ],
-              ),
+              padding:EdgeInsets.only(left: 20),
+    child: Row(
+      children:
+      hotst.map((singleticket) => TicketView(tombo: singleticket)).toList()
+        
+      
+        
+    ),
             ),
+            const Gap(15),
+            //Hotel UI is started from here..
+                   Container(
+                     padding:const EdgeInsets.symmetric(horizontal: 20),
+                 child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Hotels", style: Styles.headlineStyle2),
+                        InkWell(
+                            // ignore: avoid_print
+                            onTap: () => {print("You are tapped")},
+                            child: Text("View all",style: Styles.textStyle.copyWith(color: Styles.primaryColor),
+                            )
+                            ),
+                      ],
+                    ),
+               ),
+               const Gap(15),
+               SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.only(left: 20),
+                 child: Row(
+                children:hotelList.map((singlehotel)=>Hotelscreen(hotel: singlehotel)).toList(),
+              ),
+               ),
           ],
         ));
   }

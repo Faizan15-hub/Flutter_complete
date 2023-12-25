@@ -5,23 +5,25 @@ import 'package:aeroplane/widgets/thick_container.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class TicketView extends StatelessWidget {
-  const TicketView({Key? key}) : super(key: key);
+class TicketView extends StatelessWidget { 
+final Map<String,dynamic> tombo;
+
+const TicketView({Key? key,required this.tombo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = AppLayout.getSize(context);
     return SizedBox(
       width: size.width*0.85,
-      height: 200,
+      height:200,
       child: Container(
-        margin: const EdgeInsets.only(right: 16),
+        margin:  const EdgeInsets.only(right: 16),
         child: Column(
           //mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             //Blue part of the card/ticket
           Container(
-            decoration: const BoxDecoration(
+            decoration:  const BoxDecoration (
                 color: Color(0xFF526799),
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(21),
@@ -31,11 +33,11 @@ class TicketView extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "NYC",
+                    tombo['from']['code'],
                     style: Styles.headlineStyle3.copyWith(color: Colors.white),
                   ),
                   Expanded(child: Container()),
-                  const ThickContainer(),
+                  const ThickContainer(),//thickcontainer
                   Expanded(
                       child: Stack(
                     children: [
@@ -71,10 +73,10 @@ class TicketView extends StatelessWidget {
                       )),
                     ],
                   )),
-                  const ThickContainer(),
+                  const ThickContainer(),//thickcontainer
                   Expanded(child: Container()),
                   Text(
-                    "LDN",
+                    tombo['to']['code'],
                     style: Styles.headlineStyle3.copyWith(color: Colors.white),
                   ),
                 ],
@@ -86,19 +88,19 @@ class TicketView extends StatelessWidget {
                   SizedBox(
                     width: 100,
                     child: Text(
-                      'New-York',
+                      tombo['from']['name'],
                       style:
                           Styles.headlineStyle4.copyWith(color: Colors.white),
                     ),
                   ),
                   Text(
-                    "8H 30H",
+                    tombo['flying_time'],
                     style: Styles.headlineStyle4.copyWith(color: Colors.white),
                   ),
                   SizedBox(
-                    width: 100,
+                    width:100,
                     child: Text(
-                      'London',
+                     tombo['to']['name'],
                       textAlign: TextAlign.end,
                       style:
                           Styles.headlineStyle4.copyWith(color: Colors.white),
@@ -112,10 +114,10 @@ class TicketView extends StatelessWidget {
            Container(
             color:const  Color(0xFFF37867),
             child: Row(children: [
-              const SizedBox (
+               SizedBox (
                 height: 20,
                 width: 10,
-              child: DecoratedBox(
+              child: const DecoratedBox(
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
@@ -173,7 +175,7 @@ class TicketView extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("1 MAY",style: Styles.headlineStyle3.copyWith(color: Colors.white),),
+                                Text(tombo['date'],style: Styles.headlineStyle3.copyWith(color: Colors.white),),
                                 const Gap(5),
                                 Text("Date",style: Styles.headlineStyle4.copyWith(color: Colors.white),),
                                 
@@ -183,7 +185,7 @@ class TicketView extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text("08:00 AM",style: Styles.headlineStyle3.copyWith(color: Colors.white),),
+                                Text(tombo['departure_time'],style: Styles.headlineStyle3.copyWith(color: Colors.white),),
                                 const Gap(5),
                                 Text("Departure time",style: Styles.headlineStyle4.copyWith(color: Colors.white),),
                                 
@@ -193,7 +195,7 @@ class TicketView extends StatelessWidget {
                               Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text("23",style: Styles.headlineStyle3.copyWith(color: Colors.white),),
+                                Text(tombo['number'].toString(),style: Styles.headlineStyle3.copyWith(color: Colors.white),),
                                 const Gap(5),
                                 Text("Number",style: Styles.headlineStyle4.copyWith(color: Colors.white),),
                                 

@@ -37,8 +37,8 @@ bottomNavigationBar: BottomNavigationBar(
   elevation: 10,
   showSelectedLabels: false,
   showUnselectedLabels: false,
-  selectedItemColor: const Color.fromARGB(255, 41, 5, 172),
-  unselectedItemColor: Colors.black,
+  selectedItemColor: Colors.black,
+  unselectedItemColor: Colors.grey,
   type:BottomNavigationBarType.fixed,
   
   items: const [
